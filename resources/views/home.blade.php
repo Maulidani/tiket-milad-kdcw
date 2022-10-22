@@ -84,7 +84,7 @@ Created by pixpalette.com - online design magazine -->
                                                           <span class="glyphicon glyphicon-minus"></span>
                                                       </button>
                                                   </span>
-                                                  <input type="text" name="quant[1]" class="form-control input-number" value="0" min="0" max="10">
+                                                  <input type="text" name="quant[1]" class="form-control input-number" value="0" min="0" max="1">
                                                   <span class="input-group-btn">
                                                       <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
                                                           <span class="glyphicon glyphicon-plus"></span>
@@ -98,11 +98,11 @@ Created by pixpalette.com - online design magazine -->
                                     </div>
                                 	
                                     <div class="ticket-description">
-                                    	<p><strong>Include:</strong><br>
+                                    	<p><strong>Include :</strong><br>
                                             - Soft drink <br>
-                                            - Lunch / dinner <br>
+                                            - Dinner <br>
                                             - 1 tshirt milad kdcw 22 <br>
-                                            - Ticket Platinum for 1 family (max 3 person)
+                                            - Ticket Platinum for 1 family (max of 3 person)
                                         </p>
                                     </div>
                                             
@@ -129,7 +129,7 @@ Created by pixpalette.com - online design magazine -->
                                                           <span class="glyphicon glyphicon-minus"></span>
                                                       </button>
                                                   </span>
-                                                  <input type="text" name="quant[2]" class="form-control input-number" value="0" min="0" max="10">
+                                                  <input type="text" name="quant[2]" class="form-control input-number" value="0" min="0" max="1">
                                                   <span class="input-group-btn">
                                                       <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[2]">
                                                           <span class="glyphicon glyphicon-plus"></span>
@@ -144,9 +144,9 @@ Created by pixpalette.com - online design magazine -->
                                     </div>
                                 	
                                     <div class="ticket-description">
-                                    	<p><strong>Include:</strong><br>
+                                    	<p><strong>Include :</strong><br>
                                             - Soft drink <br>
-                                            - Lunch / dinner <br>
+                                            - Dinner <br>
                                             - 1 tshirt milad kdcw 22 <br>
                                             - Ticket Gold 
                                         </p>
@@ -175,7 +175,7 @@ Created by pixpalette.com - online design magazine -->
                                                           <span class="glyphicon glyphicon-minus"></span>
                                                       </button>
                                                   </span>
-                                                  <input type="text" name="quant[3]" class="form-control input-number" value="0" min="0" max="10">
+                                                  <input type="text" name="quant[3]" class="form-control input-number" value="0" min="0" max="1">
                                                   <span class="input-group-btn">
                                                       <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[3]">
                                                           <span class="glyphicon glyphicon-plus"></span>
@@ -190,9 +190,9 @@ Created by pixpalette.com - online design magazine -->
                                     </div>
                                 	
                                     <div class="ticket-description">
-                                    	<p><strong>Include:</strong><br>
+                                    	<p><strong>Include :</strong><br>
                                             - Soft drink <br>
-                                            - Lunch / dinner <br>
+                                            - Dinner <br>
                                             - Ticket Silver 
                                         </p>
                                     </div>
@@ -205,46 +205,17 @@ Created by pixpalette.com - online design magazine -->
                                     
                                     <div class="row">
  			                       	<div class="col-xs-6">
-            							<div class="ticket-name">Bronze
-                                            <span>-<br>1 Ticket for 1 person
-                                            </span>
-                                        </div>
-            						</div>
-                                    
-                                    <div class="col-xs-6">
-            							<div class="ticket-price-count-box">
-                                            <div class="ticket-control">
-                                                <div class="input-group">
-                                                  <span class="input-group-btn">
-                                                      <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[4]">
-                                                          <span class="glyphicon glyphicon-minus"></span>
-                                                      </button>
-                                                  </span>
-                                                  <input type="text" name="quant[4]" class="form-control input-number" value="0" min="0" max="10">
-                                                  <span class="input-group-btn">
-                                                      <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[4]">
-                                                          <span class="glyphicon glyphicon-plus"></span>
-                                                      </button>
-                                                  </span>
-                                                </div>
-                                                
-                                            </div>
-                                            <p class="price">Rs.20000</p>
-                                        </div>
+            							<div class="ticket-name">Contact person :</div>
             						</div>
                                     </div>
-                                	
-                                    
+                                	                                    
                                     <div class="ticket-description">
-                                    	<p><strong>Please refer Venue Plan:</strong><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                        <p>- Hp./Wa 1 : 088888888<br>- Hp./Wa 2 : 088888888<p>
                                     </div>
                                             
                                 </div>
                             </div>
-                            
-                            <div style="padding-left: 18px;">
-                                <p><strong>Contact Person:</strong><br>- Hp./Wa 1 : 088888888<br>- Hp./Wa 2 : 088888888<p>
-                            </div>
+                        
                             <br><br>
                         </div>
                     </div>
@@ -368,24 +339,25 @@ Created by pixpalette.com - online design magazine -->
             
             <div class="contactForm">	
                 <h3>Share your contact Details</h3>
-                <form>
+                
+                <form method="POST" action="{{ url('ticket') }}">
+                @csrf
+
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter your name">
+                    <input type="text" class="form-control" name="name" placeholder="Enter your name" required>
                   </div>
                   
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter your Email ID">
+                    <input type="text" class="form-control" name="nra" placeholder="Enter your NRA" required>
                   </div>
                   
                   <div class="form-group">
-                     <input type="text" class="form-control" placeholder="Enter your Mobile No.">
+                     <input type="text" class="form-control" name="phone" placeholder="Enter your Mobile No." required>
                   </div>
-                  
-        		  <a type="submit" class="btn">Proceed to Payment</a>
+
+        		  <button type="submit" class="btn">Proceed to Payment</button>
                 </form>
             </div>
-        
-        
         
       </div>
     </div>
