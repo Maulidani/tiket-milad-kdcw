@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryTiket;
 use Illuminate\Http\Request;
-use App\Models\Ticket;
-use App\Models\TicketCategory;
 
-class TicketController extends Controller
+class TiketCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +14,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        // $data = Ticket::all();
-
-        $category = TicketCategory::orderBy('price','DESC')->get();
-       
-        return view('home', [
-            'categori' => $category
-        ]);
+       //
     }
 
     /**
@@ -42,23 +35,7 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'ticket' => 'required|numeric',
-            'phone' => 'required|numeric',
-        ]);
-
-        $model = new Ticket;
-        $model->ticket_category_id = $request->ticket;
-        $model->quantity = "1";
-        $model->customer_name = $request->name;
-        $model->customer_nra = $request->nra;
-        $model->customer_phone = $request->phone;
-        $model->status_id = "1";
-        $model->save();
-
-        return back()->with('message', 'Berhasil pesan tiket');
-
-
+        //
     }
 
     /**
