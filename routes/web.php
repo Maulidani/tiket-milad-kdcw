@@ -20,3 +20,4 @@ use App\Http\Controllers\TicketController;
 
 Route::resource('/', TicketController::class);
 Route::resource('ticket', TicketController::class);
+

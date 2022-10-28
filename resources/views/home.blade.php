@@ -89,7 +89,7 @@
                                                             <div class="ticket-name">{{ $cgr->name }}
                                                       
                                                             @if($cgr->name =='Platinum')         
-                                                                <span>Family<br>1 Ticket for  person
+                                                                <span>Family<br>1 Ticket for 3 person
                                                             @else
                                                                 <span>-<br>1 Ticket for 1 person
                                                             @endif
@@ -482,8 +482,19 @@
                                         placeholder="Enter your Mobile No." required>
                                 </div>
 
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="email"
+                                        placeholder="Enter your Email" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="address"
+                                        placeholder="Enter your Address" required>
+                                </div>
+
                                 <button type="submit" class="btn">Proceed to Payment</button>
                             </form>
+                            <br>
                         </div>
 
                     </div>
