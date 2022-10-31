@@ -21,3 +21,6 @@ use App\Http\Controllers\TicketController;
 Route::resource('/', TicketController::class);
 Route::resource('ticket', TicketController::class);
 
+Route::get('my-ticket', function () {
+    return view('eticket');
+});

@@ -38,13 +38,13 @@
                 <div class="col-sm-5 left-wrapper">
                     <div class="event-banner-wrapper">
                         <div class="logo">
-                            <h1>Milad KeDai Computerworks</h1>
+                            <h1>22nd Anniversary KeDai Computerworks</h1>
                         </div>
 
                         <h2>
-                            reunity<br>to return togetherness
+                            Rewrite<br>Blue Folder
                             <span>
-                                <h4>Kapal Pinisi, Pantai Losari, 10 April 2017, 08:00 PM</h4>
+                                <h4>Kapal Pinisi, Pantai Losari, 10 December 2022</h4>
                             </span>
                         </h2>
                     </div>
@@ -61,10 +61,11 @@
                                         data-toggle="tab">Venue</a></li>
                                 <li role="presentation"><a href="#termCondition" aria-controls="termCondition"
                                         role="tab" data-toggle="tab">Terms & Conditions</a></li>
+                                <li role="presentation"><a href="#my-ticket" aria-controls="my-ticket"
+                                        role="tab" data-toggle="tab">My Ticket</a></li>
                             </ul>
 
 
-                           
 
                             <!-- Tab panes -->
                             <div class="tab-content">
@@ -164,11 +165,11 @@
                                 <div role="tabpanel" class="tab-pane fade" id="venue">
                                     <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam<h4>
-                                            <br><img src="images/event-banner.jpg" style="max-width:100%;">
+                                            <br><img src="images/logo-milad-22.jpeg" style="max-width:100%;">
                                             <br><br>
-                                            <img src="images/event-banner.jpg" style="max-width:100%;">
+                                            <img src="images/logo-milad-22.jpeg" style="max-width:100%;">
                                             <br><br>
-                                            <img src="images/event-banner.jpg" style="max-width:100%;">
+                                            <img src="images/logo-milad-22.jpeg" style="max-width:100%;">
                                             <br>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="termCondition">
@@ -382,6 +383,12 @@
                                     </ol>
                                     <br><br>
                                 </div>
+
+                                <div role="tabpanel" class="tab-pane fade" id="my-ticket">
+                                
+                                    //
+                                </div>
+                            
                             </div>
 
                         </div>

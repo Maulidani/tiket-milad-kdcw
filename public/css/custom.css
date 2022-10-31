@@ -112,7 +112,7 @@ label {
     width: 41.66666667%;
     height: 100%;	
     padding: 20px;
-	background: url(../images/event-banner.jpg);
+	background: url(../images/logo-milad-22.jpeg);
 	background-position: center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -123,7 +123,7 @@ label {
 .logo h1 {
     font-family: 'Nixie One', sans-serif;
     position: absolute;
-    color: #ffffff;
+    color: #000000;
     font-size: 28px;
     font-weight: 300;
     margin: 0;
@@ -137,7 +137,7 @@ label {
 	font-size: 4vw;
     font-weight: 900;
 	line-height: 4.5vw;
-	color: #fff;
+	color: #2d2d2d;
     margin: 0;
     bottom: 30px;
 }
