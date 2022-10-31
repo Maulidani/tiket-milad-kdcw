@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ use App\Http\Controllers\TicketController;
 
 Route::resource('/', TicketController::class);
 Route::resource('ticket', TicketController::class);
+
+Route::resource('admin', AdminController::class);
 
 Route::get('my-ticket', function () {
     return view('eticket');

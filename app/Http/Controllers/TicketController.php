@@ -62,7 +62,6 @@ class TicketController extends Controller
 
         return back()->with('message', 'Berhasil pesan tiket');
 
-
     }
 
     /**
