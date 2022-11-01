@@ -108,6 +108,7 @@ html {
 	font-size: 32px;
 	font-family: "Nanum Pen Script", cursive;
 	color: #d83565;
+	white-space: nowrap;
 }
 
 .show-name h1 {
@@ -178,6 +179,9 @@ html {
 
 .barcode {
 	height: 100px;
+	position: relative;
+	transform: scale(0.4);
+	transform-origin: top;
 }
 
 .barcode img {
@@ -238,7 +242,11 @@ html {
 				<p>DOORS <span>@</span> 15:30 PM</p>
 			</div>
 			<div class="barcode">
-				<img src="https://external-preview.redd.it/cg8k976AV52mDvDb5jDVJABPrSZ3tpi1aXhPjgcDTbw.png?auto=webp&s=1c205ba303c1fa0370b813ea83b9e1bddb7215eb" alt="QR code">
+				
+				@php
+					echo DNS2D::getBarcodeHTML('891.KD-LB.XIX', 'QRCODE')
+				@endphp
+
 			</div>
 			<p class="ticket-number">
 				#000000
@@ -246,3 +254,7 @@ html {
 		</div>
 	</div>
 </div>
+
+
+
+
