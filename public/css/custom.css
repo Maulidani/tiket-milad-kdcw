@@ -112,7 +112,7 @@ label {
     width: 41.66666667%;
     height: 100%;	
     padding: 20px;
-	background: url(../images/logo-milad-22.jpeg);
+	/* background: url(../images/logo-milad-22.jpeg); */
 	background-position: center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;

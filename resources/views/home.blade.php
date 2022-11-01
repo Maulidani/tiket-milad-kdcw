@@ -380,14 +380,78 @@
                                             <li>Sewaktu-waktu informasi dan jadwal bisa berubah tanpa pemberitahuan
                                                 sebelumnya.</li>
                                         </h4>
-                                    </ol>
+                                    </ol>   
                                     <br><br>
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane fade" id="my-ticket">
                                 
-                                    //
-                                </div>
+                                    <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="ticketBox" data-id="{{ $cgr }}">
+                                                    <div class="inactiveStatus"></div>
+                                                    <div class="row">
+                                                        <div class="col-xs-10">
+                                                            <div class="ticket-name">Check ticket
+                                                    
+                                                                <span>
+                                                                    Enter your NRA to check the status of your ticket
+                                                                    <br><br>    
+                                                                    <form method="POST" action="{{ url('ticket-status') }}#my-ticket">
+                                                                        @csrf
+                                                                        <div class="form">
+                                                                            <input type="text" class="form-control" name="nra"
+                                                                                placeholder="Enter your NRA" required>
+                                                                                <br>
+                                                                                <button type="submit" id="check" class="btn">Check</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </span>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                        
+                                                        {{-- Message --}}
+                                                        @if(session()->has('message-status-ticket'))
+                                                            <div class="ticket-description">                                                                
+                                                            @if(session()->get('message-status-ticket') == 'error')
+                                                                <div class="alert alert-danger">
+                                                                    <ul><li> {{ 'Not found' }} </li></ul>
+                                                            @else
+                                                                <div class="alert alert-success">
+                                                                    {{ session()->get('message-status-ticket') }}
+
+                                                                    <form method="post" action="{{ url('my-ticket') }}">
+                                                                        @csrf
+                                                                        <div class="form">
+                                                                            <input type="hidden" class="form-control" name="ticket_id"
+                                                                                value="27" required>
+
+                                                                            <button type="submit" class="btn">Download</button>
+                                                                        </div>
+                                                                    </form>
+                                                            @endif
+
+                                                            </div>
+                                                        @endif
+
+                                                        @if ($errors->any())
+                                                            <div class="ticket-description">
+                                                            <div class="alert alert-danger">
+                                                                <ul>
+                                                                    @foreach ($errors->all() as $error)
+                                                                        <li>{{ $error }}</li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+                                            </div>                                        
+                                    </div>
                             
                             </div>
 
@@ -411,10 +475,10 @@
                             </div>
                             
                             {{-- Message --}}
-                            @if(session()->has('message'))
+                            @if(session()->has('message-order-ticket'))
                                 <br>
                                 <div class="alert alert-success">
-                                    {{ session()->get('message') }}
+                                    {{ session()->get('message-order-ticket') }}
                                 </div>
                             @endif
 
@@ -508,7 +572,6 @@
                 </div>
             </div>
         </div>
-
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

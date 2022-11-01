@@ -60,7 +60,7 @@ class TicketController extends Controller
         $model->status_id = "1";
         $model->save();
 
-        return back()->with('message', 'Berhasil pesan tiket');
+        return redirect()->back()->with('message-order-ticket', 'Berhasil pesan tiket');
 
     }
 

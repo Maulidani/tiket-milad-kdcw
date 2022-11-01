@@ -1,7 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
+use App\Models\Ticket;
+use App\Models\TicketCategory;
+use App\Models\Status;
+
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\TicketStatusController;
 use App\Http\Controllers\AdminController;
 
 /*
@@ -22,8 +29,44 @@ use App\Http\Controllers\AdminController;
 Route::resource('/', TicketController::class);
 Route::resource('ticket', TicketController::class);
 
+Route::post('ticket-status', function (Request $request) {
+
+    $request->validate([
+        'nra' => 'required',
+    ]);
+
+    $status = Ticket::join('statuses','statuses.id','tickets.status_id')
+        ->join('ticket_categories','ticket_categories.id','tickets.ticket_category_id')
+        ->where('tickets.customer_nra', $request->nra)->first('ticket_categories.name');
+
+    if($status) {
+        return redirect(url()->previous() . '#my-ticket')->with('message-status-ticket', $status->name);
+
+    } else {
+        return back()->with('message-status-ticket', 'error');
+    }
+
+});
+
 Route::resource('admin', AdminController::class);
 
-Route::get('my-ticket', function () {
+Route::get('my-ticket-tes', function() {
     return view('eticket');
+});
+
+
+
+Route::post('my-ticket', function (Request $request) {
+
+    $status = Ticket::join('statuses','statuses.id','tickets.status_id')
+    ->join('ticket_categories','ticket_categories.id','tickets.ticket_category_id')
+    ->where('tickets.id', $request->ticket_id)->first('ticket_categories.name');
+
+
+    if($status) {
+        return redirect('/my-ticket-tes')->with('message-my-ticket', $status->name);
+    } else {
+        return back()->with('message-status-ticket', 'error');
+    }
+
 });

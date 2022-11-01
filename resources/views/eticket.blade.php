@@ -235,7 +235,16 @@ html {
 		</p>
 		<div class="right-info-container">
 			<div class="show-name">
-				<!-- <h1>22nd Anniversary Kedai Computerworks</h1> -->
+				
+				{{-- Message --}}
+				@if(session()->has('message-my-ticket'))
+					<h1>{{ session()->get('message-my-ticket') }}</h1>
+				@endif
+
+				@if ($errors->any())
+					<h1>Expired</h1>
+				@endif
+
 			</div>
             <div class="time">
 				<p>16:00 PM <span>TO</span> 20:30 PM</p>
