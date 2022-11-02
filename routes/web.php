@@ -37,10 +37,10 @@ Route::post('ticket-status', function (Request $request) {
 
     $status = Ticket::join('statuses','statuses.id','tickets.status_id')
         ->join('ticket_categories','ticket_categories.id','tickets.ticket_category_id')
-        ->where('tickets.customer_nra', $request->nra)->first('ticket_categories.name');
+        ->where('tickets.customer_nra', $request->nra)->first(['tickets.*', 'ticket_categories.name']);
 
     if($status) {
-        return redirect(url()->previous() . '#my-ticket')->with('message-status-ticket', $status->name);
+        return back()->with('message-status-ticket', $status);
 
     } else {
         return back()->with('message-status-ticket', 'error');
@@ -50,21 +50,18 @@ Route::post('ticket-status', function (Request $request) {
 
 Route::resource('admin', AdminController::class);
 
-Route::get('my-ticket-tes', function() {
+Route::get('my-ticket', function() {
     return view('eticket');
 });
 
-
-
-Route::post('my-ticket', function (Request $request) {
+Route::post('my-ticket-checking', function (Request $request) {
 
     $status = Ticket::join('statuses','statuses.id','tickets.status_id')
     ->join('ticket_categories','ticket_categories.id','tickets.ticket_category_id')
-    ->where('tickets.id', $request->ticket_id)->first('ticket_categories.name');
-
+    ->where('tickets.id', $request->ticket_id)->first(['tickets.*', 'ticket_categories.name']);
 
     if($status) {
-        return redirect('/my-ticket-tes')->with('message-my-ticket', $status->name);
+        return redirect('/my-ticket')->with('message-my-ticket', $status);
     } else {
         return back()->with('message-status-ticket', 'error');
     }

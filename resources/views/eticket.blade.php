@@ -34,8 +34,8 @@ html {
 }
 
 .image {
-	height: 250px;
-	width: 250px;
+	height: 100%;
+	width: 270px;
 	background-image: url("images/logo-milad-22.jpeg");
 	background-size: contain;
 	opacity: 0.85;
@@ -204,7 +204,17 @@ html {
 			</p>
 			<div class="ticket-number">
 				<p>
-					#000000
+					{{-- Message --}}
+					@if(session()->has('message-my-ticket'))
+						{{ session()->get('message-my-ticket')->name }}
+						#{{ session()->get('message-my-ticket')->id }}
+					@else
+						<p class="ticket-number" style="color : red;">Fake ticket</p>
+					@endif
+
+					@if ($errors->any())
+						<p class="ticket-number" style="color : red;">Fake ticket</p>
+					@endif
 				</p>
 			</div>
 		</div>
@@ -219,11 +229,14 @@ html {
 				<h2>Rewrite Blue Folder</h2>
 			</div>
 			<div class="time">
-				<p>16:00 PM <span>TO</span> 20:30 PM</p>
+				<p>16:00 PM <span>TO</span> 21:00 PM</p>
 				<p>DOORS <span>@</span> 15:30 PM</p>
 			</div>
-			<p class="location"><span>KAPAL PHINISI</span>
+			<!-- <p class="location"><span>KAPAL PHINISI</span>
 				<span class="separator"><i class="far fa-smile"></i></span><span>Pantai Losari, Makassar</span>
+			</p> -->
+			<p class="location"><span>LOCATION</span>
+				<span class="separator"><i class="far fa-smile"></i></span><span>Location, Makassar</span>
 			</p>
 		</div>
 	</div>
@@ -234,31 +247,41 @@ html {
 			<span>ADMIT ONE</span>
 		</p>
 		<div class="right-info-container">
+			<br>
 			<div class="show-name">
-				
-				{{-- Message --}}
-				@if(session()->has('message-my-ticket'))
-					<h1>{{ session()->get('message-my-ticket') }}</h1>
-				@endif
-
-				@if ($errors->any())
-					<h1>Expired</h1>
-				@endif
 
 			</div>
             <div class="time">
-				<p>16:00 PM <span>TO</span> 20:30 PM</p>
+				<p>16:00 PM <span>TO</span> 21:00 PM</p>
 				<p>DOORS <span>@</span> 15:30 PM</p>
 			</div>
 			<div class="barcode">
+				<br>
 				
-				@php
-					echo DNS2D::getBarcodeHTML('891.KD-LB.XIX', 'QRCODE')
-				@endphp
+				@if(session()->has('message-my-ticket'))
+					@php
+						echo DNS2D::getBarcodeHTML(session()->get('message-my-ticket')->customer_nra, 'QRCODE');
+					@endphp
+
+				@else
+					<h1 class="ticket-number" style="color : red; font-size:200px;">X</h1>
+				@endif
 
 			</div>
 			<p class="ticket-number">
-				#000000
+				{{-- Message --}}
+				@if(session()->has('message-my-ticket'))
+					#{{ session()->get('message-my-ticket')->id }} <br>
+					{{ session()->get('message-my-ticket')->name }}
+				@else
+					<p class="ticket-number" style="color : red;">Fake ticket</p>
+				@endif
+
+				@if ($errors->any())
+					<p class="ticket-number" style="color : red;">Fake ticket</p>
+				@endif
+
+				
 			</p>
 		</div>
 	</div>

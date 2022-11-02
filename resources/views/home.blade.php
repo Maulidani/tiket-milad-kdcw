@@ -44,7 +44,8 @@
                         <h2>
                             Rewrite<br>Blue Folder
                             <span>
-                                <h4>Kapal Pinisi, Pantai Losari, 10 December 2022</h4>
+                                <!-- <h4>Kapal Pinisi, Pantai Losari, 10 December 2022</h4> -->
+                                <h4>Cooming soon, 10 December 2022</h4>
                             </span>
                         </h2>
                     </div>
@@ -55,21 +56,41 @@
 
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
+                                
+                                @if(session()->has('message-status-ticket'))
+                                <li role="presentation"><a href="#buyTicket" aria-controls="buyTicket"
+                                        role="tab" data-toggle="tab">Buy Tickets</a></li>
+                                
+                                @else  
                                 <li role="presentation" class="active"><a href="#buyTicket" aria-controls="buyTicket"
                                         role="tab" data-toggle="tab">Buy Tickets</a></li>
+                                @endif
+
                                 <li role="presentation"><a href="#venue" aria-controls="venue" role="tab"
                                         data-toggle="tab">Venue</a></li>
                                 <li role="presentation"><a href="#termCondition" aria-controls="termCondition"
                                         role="tab" data-toggle="tab">Terms & Conditions</a></li>
+
+                                @if(session()->has('message-status-ticket'))
+                                <li role="presentation" class="active"><a href="#my-ticket" aria-controls="my-ticket"
+                                        role="tab" data-toggle="tab">My Ticket</a></li>
+                        
+                                @else  
                                 <li role="presentation"><a href="#my-ticket" aria-controls="my-ticket"
                                         role="tab" data-toggle="tab">My Ticket</a></li>
-                            </ul>
+                                @endif
 
+                            
+                            </ul>
 
 
                             <!-- Tab panes -->
                             <div class="tab-content">
+                                @if(session()->has('message-status-ticket'))
+                                <div role="tabpanel" class="tab-pane fade" id="buyTicket">
+                                @else
                                 <div role="tabpanel" class="tab-pane fade in active" id="buyTicket">
+                                @endif
 
                                     <div class="row">
                                         @php
@@ -163,17 +184,20 @@
 
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="venue">
-                                    <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    <h4> Cooming soon !</h4>
+                                    <!-- <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam<h4>
                                             <br><img src="images/logo-milad-22.jpeg" style="max-width:100%;">
                                             <br><br>
                                             <img src="images/logo-milad-22.jpeg" style="max-width:100%;">
                                             <br><br>
                                             <img src="images/logo-milad-22.jpeg" style="max-width:100%;">
-                                            <br>
+                                            <br><br> -->
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="termCondition">
-                                    <ol>
+                                    <h4> Cooming soon !</h4>
+                                  
+                                    <!-- <ol>
                                         <h4>
                                             <li>Pembeli atau pemegang tiket untuk datang dan masuk ke area pertunjukan
                                                 wajib berusia minimal 18 tahun, dan telah melakukan Vaksinasi Covid-19
@@ -380,11 +404,15 @@
                                             <li>Sewaktu-waktu informasi dan jadwal bisa berubah tanpa pemberitahuan
                                                 sebelumnya.</li>
                                         </h4>
-                                    </ol>   
+                                    </ol>    -->
                                     <br><br>
                                 </div>
 
+                                @if(session()->has('message-status-ticket'))
+                                <div role="tabpanel" class="tab-pane fade in active" id="my-ticket">
+                                @else
                                 <div role="tabpanel" class="tab-pane fade" id="my-ticket">
+                                @endif
                                 
                                     <div class="row">
                                             <div class="col-md-8">
@@ -397,7 +425,7 @@
                                                                 <span>
                                                                     Enter your NRA to check the status of your ticket
                                                                     <br><br>    
-                                                                    <form method="POST" action="{{ url('ticket-status') }}#my-ticket">
+                                                                    <form method="POST" action="{{ url('ticket-status') }}">
                                                                         @csrf
                                                                         <div class="form">
                                                                             <input type="text" class="form-control" name="nra"
@@ -413,32 +441,34 @@
 
                                                     </div>
                                         
-                                                        {{-- Message --}}
-                                                        @if(session()->has('message-status-ticket'))
-                                                            <div class="ticket-description">                                                                
-                                                            @if(session()->get('message-status-ticket') == 'error')
-                                                                <div class="alert alert-danger">
-                                                                    <ul><li> {{ 'Not found' }} </li></ul>
-                                                            @else
-                                                                <div class="alert alert-success">
-                                                                    {{ session()->get('message-status-ticket') }}
-
-                                                                    <form method="post" action="{{ url('my-ticket') }}">
-                                                                        @csrf
-                                                                        <div class="form">
-                                                                            <input type="hidden" class="form-control" name="ticket_id"
-                                                                                value="27" required>
-
-                                                                            <button type="submit" class="btn">Download</button>
-                                                                        </div>
-                                                                    </form>
-                                                            @endif
-
+                                                    {{-- Message --}}
+                                                    @if(session()->has('message-status-ticket'))
+                                                        <div class="ticket-description">                                                                
+                                                        @if(session()->get('message-status-ticket') == 'error')
+                                                            <div class="alert alert-danger">
+                                                                <ul><li> {{ 'Not found' }} </li></ul>
                                                             </div>
+                                                        @else
+                                                            <div class="alert alert-success">
+                                                                {{ session()->get('message-status-ticket')->name }}
+                                                            </div>
+
+                                                            <form method="post" action="{{ url('my-ticket-checking') }}">
+                                                                @csrf
+                                                                <div class="form">
+                                                                    <input type="hidden" class="form-control" name="ticket_id"
+                                                                        value="{{ session()->get('message-status-ticket')->id }}" required>
+
+                                                                    <button type="submit" class="btn">Download</button>
+                                                                </div>
+                                                            </form>
                                                         @endif
 
-                                                        @if ($errors->any())
-                                                            <div class="ticket-description">
+                                                        </div>
+                                                    @endif
+
+                                                    @if ($errors->any())
+                                                        <div class="ticket-description">
                                                             <div class="alert alert-danger">
                                                                 <ul>
                                                                     @foreach ($errors->all() as $error)
@@ -446,8 +476,8 @@
                                                                     @endforeach
                                                                 </ul>
                                                             </div>
-                                                        @endif
-                                                    </div>
+                                                        </div>
+                                                    @endif
                                                 </div>
 
                                             </div>                                        
