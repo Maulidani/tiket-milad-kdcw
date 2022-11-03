@@ -178,6 +178,9 @@ return [
         //qr code
         Milon\Barcode\BarcodeServiceProvider::class,
 
+        //pdf
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -236,6 +239,9 @@ return [
         //qr code
         'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
         'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
+
+        //pdf
+	    'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

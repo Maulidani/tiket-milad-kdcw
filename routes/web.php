@@ -11,6 +11,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TicketStatusController;
 use App\Http\Controllers\AdminController;
 
+use Barryvdh\DomPDF\Facade\Pdf as Pdf;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +52,10 @@ Route::post('ticket-status', function (Request $request) {
 Route::resource('admin', AdminController::class);
 
 Route::get('my-ticket', function() {
+    
+    // $pdf = Pdf::loadview('qr-ticket')->setOptions(['']);
+    // return $pdf->stream('');
+    
     return view('eticket');
 });
 

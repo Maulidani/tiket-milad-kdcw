@@ -42,10 +42,6 @@ html {
 	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
-.left {
-	display: flex;
-}
-
 .image {
 	height: 100%;
 	width: 100%;
@@ -70,15 +66,6 @@ html {
 .admit-one span:nth-child(2) {
 	color: white;
 	font-weight: 700;
-}
-
-.left .ticket-number {
-	height: 250px;
-	width: 250px;
-	display: flex;
-	justify-content: flex-end;
-	align-items: flex-end;
-	padding: 5px;
 }
 
 .ticket-info {
@@ -146,11 +133,6 @@ html {
 	color: gray;
 }
 
-.left .time {
-	font-size: 16px;
-}
-
-
 .location {
 	display: flex;
 	justify-content: space-around;
@@ -211,51 +193,6 @@ html {
 <body>
 	
 <div class="ticket">
-	<div class="left">
-		<div class="image">
-			<p class="admit-one">
-				<span>ADMIT ONE</span>
-				<span>ADMIT ONE</span>
-				<span>ADMIT ONE</span>
-			</p>
-			<div class="ticket-number">
-				<p>
-					{{-- Message --}}
-					@if(session()->has('message-my-ticket'))
-						{{ session()->get('message-my-ticket')->name }}
-						#{{ session()->get('message-my-ticket')->id }}
-					@else
-						<p class="ticket-number" style="color : red;">Fake ticket</p>
-					@endif
-
-					@if ($errors->any())
-						<p class="ticket-number" style="color : red;">Fake ticket</p>
-					@endif
-				</p>
-			</div>
-		</div>
-		<div class="ticket-info">
-			<p class="date">
-				<span>SATURDAY</span>
-				<span class="june-29">Dec 10TH</span>
-				<span>2022</span>
-			</p>
-			<div class="show-name">
-				<h1>22nd Anniversary</h1>
-				<h2>Rewrite Blue Folder</h2>
-			</div>
-			<div class="time">
-				<p>16:00 PM <span>TO</span> 21:00 PM</p>
-				<p>DOORS <span>@</span> 15:30 PM</p>
-			</div>
-			<!-- <p class="location"><span>KAPAL PHINISI</span>
-				<span class="separator"><i class="far fa-smile"></i></span><span>Pantai Losari, Makassar</span>
-			</p> -->
-			<p class="location"><span>LOCATION</span>
-				<span class="separator"><i class="far fa-smile"></i></span><span>Location, Makassar</span>
-			</p>
-		</div>
-	</div>
 	<div class="right">
 		<p class="admit-one">
 			<span>ADMIT ONE</span>
@@ -302,7 +239,6 @@ html {
 		</div>
 	</div>
 </div>
-
 </body>
 </html>
 

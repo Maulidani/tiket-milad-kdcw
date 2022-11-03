@@ -450,7 +450,19 @@
                                                             </div>
                                                         @else
                                                             <div class="alert alert-success">
-                                                                {{ session()->get('message-status-ticket')->name }}
+                                                                Ticket {{ session()->get('message-status-ticket')->name }}
+                                                                #{{ session()->get('message-status-ticket')->id }}
+                                                                <ul>
+                                                                    <li>Nama : {{ session()->get('message-status-ticket')->customer_name }} </li>
+                                                                    <li>NRA  : {{ session()->get('message-status-ticket')->customer_nra }} </li>
+                                                                    <!-- <li> <br>
+                                                                        @php
+                                                                            echo DNS2D::getBarcodeHTML(session()->get('message-status-ticket')->customer_nra, 'QRCODE');
+                                                                        @endphp
+                                                                    </li> -->
+                                                                    
+                                                                </ul>
+
                                                             </div>
 
                                                             <form method="post" action="{{ url('my-ticket-checking') }}">
@@ -459,7 +471,7 @@
                                                                     <input type="hidden" class="form-control" name="ticket_id"
                                                                         value="{{ session()->get('message-status-ticket')->id }}" required>
 
-                                                                    <button type="submit" class="btn">Download</button>
+                                                                    <button type="submit" class="btn">See my ticket </button>
                                                                 </div>
                                                             </form>
                                                         @endif
