@@ -45,8 +45,9 @@ class TicketController extends Controller
         $request->validate([
             'ticket' => 'required|numeric',
             'phone' => 'required|numeric',
-            'email' => 'required',
+            'email' => 'required|email',
             'address' => 'required',
+            'campus' => 'required',
         ]);
 
         $model = new Ticket;
@@ -57,6 +58,8 @@ class TicketController extends Controller
         $model->customer_phone = $request->phone;
         $model->customer_email = $request->email;
         $model->customer_address = $request->address;
+        $model->customer_campus = $request->campus;
+        $model->merchandise = $request->tshirt.','.$request->tshirt_type.','.$request->tshirt_size;
         $model->status_id = "1";
         $model->save();
 

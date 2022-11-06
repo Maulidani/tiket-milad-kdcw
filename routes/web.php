@@ -38,7 +38,7 @@ Route::post('ticket-status', function (Request $request) {
 
     $status = Ticket::join('statuses','statuses.id','tickets.status_id')
         ->join('ticket_categories','ticket_categories.id','tickets.ticket_category_id')
-        ->where('tickets.customer_nra', $request->nra)->first(['tickets.*', 'ticket_categories.name']);
+        ->where('tickets.customer_nra', $request->nra)->first(['tickets.*', 'ticket_categories.name','statuses.name as ticket_status', 'statuses.description as ticket_status_desc']);
 
     if($status) {
         return back()->with('message-status-ticket', $status);

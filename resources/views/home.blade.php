@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Ticket - MILAD KDCW 22</title>
+        <title>Tiket - MILAD KDCW 22</title>
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -37,17 +37,17 @@
             <div class="row">
                 <div class="col-sm-5 left-wrapper">
                     <div class="event-banner-wrapper">
-                        <div class="logo">
+                        <!-- <div class="logo">
                             <h1>22nd Anniversary KeDai Computerworks</h1>
                         </div>
 
                         <h2>
                             Rewrite<br>Blue Folder
                             <span>
-                                <!-- <h4>Kapal Pinisi, Pantai Losari, 10 December 2022</h4> -->
+                                <h4>Kapal Pinisi, Pantai Losari, 10 December 2022</h4>
                                 <h4>Cooming soon, 10 December 2022</h4>
                             </span>
-                        </h2>
+                        </h2> -->
                     </div>
                 </div>
                 <div class="col-sm-7 right-wrapper">
@@ -59,26 +59,30 @@
                                 
                                 @if(session()->has('message-status-ticket'))
                                 <li role="presentation"><a href="#buyTicket" aria-controls="buyTicket"
-                                        role="tab" data-toggle="tab">Buy Tickets</a></li>
+                                        role="tab" data-toggle="tab">Tiket</a></li>
                                 
                                 @else  
                                 <li role="presentation" class="active"><a href="#buyTicket" aria-controls="buyTicket"
-                                        role="tab" data-toggle="tab">Buy Tickets</a></li>
+                                        role="tab" data-toggle="tab">Tiket</a></li>
                                 @endif
 
                                 <li role="presentation"><a href="#venue" aria-controls="venue" role="tab"
-                                        data-toggle="tab">Venue</a></li>
-                                <li role="presentation"><a href="#termCondition" aria-controls="termCondition"
-                                        role="tab" data-toggle="tab">Terms & Conditions</a></li>
+                                        data-toggle="tab">Lokasi</a></li>
+                                        
+                                <li role="presentation"><a href="#merchandise" aria-controls="merchandise" role="tab"
+                                        data-toggle="tab">Merchandise</a></li>
 
-                                @if(session()->has('message-status-ticket'))
+                                <li role="presentation"><a href="#termCondition" aria-controls="termCondition"
+                                        role="tab" data-toggle="tab">Alur pemesanan</a></li>
+
+                                <!-- @if(session()->has('message-status-ticket'))
                                 <li role="presentation" class="active"><a href="#my-ticket" aria-controls="my-ticket"
-                                        role="tab" data-toggle="tab">My Ticket</a></li>
+                                        role="tab" data-toggle="tab">Tiket saya</a></li>
                         
                                 @else  
                                 <li role="presentation"><a href="#my-ticket" aria-controls="my-ticket"
-                                        role="tab" data-toggle="tab">My Ticket</a></li>
-                                @endif
+                                        role="tab" data-toggle="tab">Tiket saya</a></li>
+                                @endif -->
 
                             
                             </ul>
@@ -111,9 +115,9 @@
                                                             <div class="ticket-name">{{ $cgr->name }}
                                                       
                                                             @if($cgr->name =='Platinum')         
-                                                                <span>Family<br>1 Ticket for 3 person
+                                                                <span>Family<br>1 Tiket untuk 3 orang
                                                             @else
-                                                                <span>-<br>1 Ticket for 1 person
+                                                                <span>-<br>1 Tiket untuk 1 orang
                                                             @endif
                                                                 </span>
 
@@ -167,7 +171,7 @@
                                                 <div class="row">
                                                     <div class="col-xs-6">
                                                         <div class="ticket-name">
-                                                            <span>Contact person :</span>
+                                                            <span>Narahubung :</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -184,7 +188,7 @@
 
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="venue">
-                                    <h4> Cooming soon !</h4>
+                                    <!-- <h4> Cooming soon !</h4> -->
                                     <!-- <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam<h4>
                                             <br><img src="images/logo-milad-22.jpeg" style="max-width:100%;">
@@ -193,218 +197,36 @@
                                             <br><br>
                                             <img src="images/logo-milad-22.jpeg" style="max-width:100%;">
                                             <br><br> -->
+
+                                            <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=MAkassar&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://formatjson.org/">format json</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div>
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="merchandise">
+                                    <h4>Merchandise<h4>
+                                            <br><img src="images/logo-milad-22.jpeg" style="max-width:100%;">
+                                            <br><br>
+                                            <img src="images/logo-milad-22.jpeg" style="max-width:100%;">
+                                            <br><br>
+                                            <img src="images/logo-milad-22.jpeg" style="max-width:100%;">
+                                            <br><br>
+
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="termCondition">
-                                    <h4> Cooming soon !</h4>
-                                  
-                                    <!-- <ol>
+                                    <ol>
                                         <h4>
-                                            <li>Pembeli atau pemegang tiket untuk datang dan masuk ke area pertunjukan
-                                                wajib berusia minimal 18 tahun, dan telah melakukan Vaksinasi Covid-19
-                                                lengkap, serta bersedia menjalankan semua aturan protokol kesehatan
-                                                Covid-19 yang berlaku.</li>
+                                            <li>Pembelian tiket resmi secara online melalui
+                                                situs web www.com</li>
                                         </h4>
                                         <h4>
-                                            <li>Pembelian tiket resmi telah ditentukan yaitu secara online melalui
-                                                transaksi elektronik pada situs web rockincelebes.com atau langsung
-                                                melalui situs loket.com, dan offline di tiket box resmi yang telah
-                                                ditentukan yaitu Chambers Shop dan Floom Space.</li>
+                                            <li>Pilih kategori tiket</li>
                                         </h4>
                                         <h4>
-                                            <li>Tiket tersedia dalam beberapa masa penjualan dan kategori serta masa
-                                                berlaku, yaitu;</li>
-                                        </h4>
-                                        <ol>
-                                            <h4>
-                                                <li>Masa Penjualan:</li>
-                                            </h4>
-                                            <ol>
-                                                <h4>
-                                                    <li>Early Bird (masa pembelian: 13 – 24 Oktober 2022); Tiket yang
-                                                        tersedia lebih awal, dengan harga termurah, dengan jumlah
-                                                        terbatas dan sewaktu-waktu ditutup karena quota,</li>
-                                                </h4>
-                                                <h4>
-                                                    <li>Pre-sale (masa pembelian: 25 Oktober – 24 November 2022); Tiket
-                                                        yang tersedia berikutnya, dengan harga promo, dengan masa waktu
-                                                        penjualan yang telah ditentukan, namun juga terbatas sesuai
-                                                        quota.</li>
-                                                </h4>
-                                                <h4>
-                                                    <li>Normal (masa pembelian: 25 November – 11 Desember 2022); Tiket
-                                                        yang tersedia dengan harga normal, dengan masa waktu penjualan
-                                                        yang ditentukan hingga hari pertunjukan, namun juga terbatas
-                                                        sesuai kapasitas venue.</li>
-                                                </h4>
-                                            </ol>
-                                            <h4>
-                                                <li>Kategori dan harga:</li>
-                                            </h4>
-                                            <ol>
-                                                <h4>
-                                                    <li>Early entry: Tiket dengan batas waktu yang ditentukan yaitu
-                                                        hanya bisa memasuki area pertunjukan, paling lambat pukul 16.00
-                                                        Wita. Setelah waktu tersebut, tidak berlaku lagi untuk akses
-                                                        masuk, dan tidak berlaku penukaran maupun pengembalian.</li>
-                                                </h4>
-                                                <ol>
-                                                    <h4>
-                                                        <li>Early bird seharga: Rp. 175.000</li>
-                                                    </h4>
-                                                    <h4>
-                                                        <li>Presale seharga: Rp. 225.000</li>
-                                                    </h4>
-                                                    <h4>
-                                                        <li>Normal seharga: Rp. 275.000</li>
-                                                    </h4>
-                                                </ol>
-                                                <h4>
-                                                    <li>Reguler: Tiket dengan batas waktu yang tidak ditentukan atau
-                                                        fleksibel</li>
-                                                </h4>
-                                                <ol>
-                                                    <h4>
-                                                        <li>Early bird seharga: Rp. 225.000</li>
-                                                    </h4>
-                                                    <h4>
-                                                        <li>Presale seharga: Rp. 275.000</li>
-                                                    </h4>
-                                                    <h4>
-                                                        <li>Normal seharga: Rp. 325.000</li>
-                                                    </h4>
-                                                </ol>
-                                                <h4>
-                                                    <li>VIP: Tiket dengan batas waktu yang tidak ditentukan atau
-                                                        fleksibel dan memiliki keuntungan akses tertentu, dan
-                                                        mendapatkan festival kit eksklusif, serta merchandise tambahan
-                                                        (khusus penawaraan early bird dan pre-sale).</li>
-                                                </h4>
-                                                <ol>
-                                                    <h4>
-                                                        <li>Early bird seharga: Rp. 400.000</li>
-                                                    </h4>
-                                                    <h4>
-                                                        <li>Presale seharga: Rp. 450.000</li>
-                                                    </h4>
-                                                    <h4>
-                                                        <li>Normal seharga: Rp. 500.000</li>
-                                                    </h4>
-                                                </ol>
-                                            </ol>
-                                        </ol>
-                                        <h4>
-                                            <li>Semua tiket berlaku untuk 2 hari event pada 10-11 Desember 2022.</li>
+                                            <li>Masukkan data diri</li>
                                         </h4>
                                         <h4>
-                                            <li>Tanda masuk yang sah adalah tiket dan berupa tanda gelang yang
-                                                didapatkan setelah penukaran tanda terima pembelian tiket langsung di
-                                                tempat pertunjukan pada hari pelaksanaan.</li>
+                                            <li>Untuk informasi lebih lanjut, anda akan dihubungi melalui whatsapp</li>
                                         </h4>
-                                        <h4>
-                                            <li>Tanda terima pembelian dan tiket adalah bukan tanda masuk yang sah dan
-                                                tidak dapat digunakan langsung untuk masuk ke dalam area pertunjukan.
-                                                Sebelumnya wajib ditukar dengan tanda gelang asli sebelum masuk ke dalam
-                                                area pertunjukan. Penukaran ini disediakan dan berlaku pada hari
-                                                pelaksanaan, pada 10-11 Desember 2022 di luar atau di depan area
-                                                pertunjukan.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Penyelenggara berhak untuk memproses sesuai ketentuan terhadap pembeli
-                                                atau pemegang tiket atau pengunjung yang tidak memenuhi syarat dan
-                                                ketentuan yang berlaku.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Penyelenggara berhak menuntut secara hukum sesuai dengan ketentuan
-                                                perundangan yang berlaku baik secara perdata maupun secara pidana
-                                                terhadap orang-orang yang memperoleh tiket dengan cara yang tidak sah
-                                                tapi tidak terbatas dengan cara melakukan pemalsuan atau menggandakan
-                                                tanda terima atau tiket yang sah atau memperoleh tiket dengan cara yang
-                                                tidak sesuai dengan yang telah ditentukan oleh penyelenggara.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Penyelenggara tidak bertanggung jawab atas kelalaian pembeli tiket yang
-                                                mengakibatkan tiket jatuh ke tangan orang lain (dalam penguasaan orang
-                                                lain), sengaja atau tidak disengaja, untuk dipergunakan sebagai tanda
-                                                masuk tempat pertunjukan yang menghilangkan hak dari pembeli tiket.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Tanda terima pembelian atau tiket tidak dapat ditukar atau diuangkan
-                                                kembali.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Pembeli tiket dengan ini menyatakan melepaskan hak hukum untuk mengajuan
-                                                tuntutan baik melalui pengadilan atau cara-cara apapun yang
-                                                diperkenankan secara hukum untuk menuntut penyelenggara dalam hal ini
-                                                terjadi pembatalan pertunjukan yang dilakukan secara sepihak oleh pihak
-                                                artis atau pemerintah atau sebab-sebab lain diluar kemampuan dan
-                                                kehendak pihak Penyelenggara.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Apabila terdapat pembatalan pertunjukan keseluruhan maka tanda terima
-                                                atau tiket dapat diuangkan kembali sesuai ketentuan Penyelenggara.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Semua pengunjung diwajibkan membawa identitas seperti KTP/SIM/tanda
-                                                pengenal lainnya, untuk kebutuhan verifikasi data identitas
-                                                sewaktu-waktu.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Apabila terjadi hal-hal yang tidak diinginkan, seperti keadaan darurat
-                                                serta evakuasi, diharapkan agar semua pengunjung tidak panik dan tidak
-                                                melakukan tindakan diluar akal sehat. Penyelenggara telah melampirkan
-                                                dan menyediakan panduan jalur evakuasi kepada semua pengunjung melalui
-                                                informasi tercetak dan tanda di beberapa tempat.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Dilarang membawa segala makanan dan minuman dari luar ke dalam tempat
-                                                pertunjukan.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Dilarang membawa dan menggunakan segala jenis obat-obatan terlarang
-                                                termasuk tapi tidak terbatas dengan narkoba dan sejenisnya.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Dilarang membawa senjata api dan senjata tajam serta benda-benda yang
-                                                dilarang berdasarkan ketentuan pertunjukan dan ketentuan perundangan
-                                                yang berlaku ke dalam tempat pertunjukan.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Dilarang membawa suar (flare) atau sejenisnya (kembang api, petasan dan
-                                                lain-lainnya.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Dilarang membawa senter laser dan sejenisnya.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Dilarang membawa Drone.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Pengunjung dibolehkan membawa kamera (ukuran handy) foto dan video
-                                                (tanpa lensa tele) ke dalam tempat pertunjukan.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Penyelenggara tidak menyediakan tempat penitipan barang dan tidak
-                                                bertanggung jawab apabila terjadi kehilangan.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Penyelenggara berhak melarang siapapun masuk ke dalam tempat pertunjukan
-                                                apabila tidak membawa tiket atau akses tanda masuk (gelang) lainnya atau
-                                                segala hal yang dilarang yang telah dijelaskan di poin sebelumnya.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Penyelenggara berhak mengeluarkan pengunjung dari tempat pertunjukan
-                                                apabila dipandang perlu untuk kenyamanan dan keamanan, termasuk
-                                                pelanggaran aturan protokol kesehatan Covid-19.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Bagi pembeli tiket atau pengunjung telah mengetahui dan menyetujui
-                                                segala informasi, syarat dan ketentuan ini.</li>
-                                        </h4>
-                                        <h4>
-                                            <li>Sewaktu-waktu informasi dan jadwal bisa berubah tanpa pemberitahuan
-                                                sebelumnya.</li>
-                                        </h4>
-                                    </ol>    -->
+                                    </ol>   
                                     <br><br>
                                 </div>
 
@@ -420,10 +242,10 @@
                                                     <div class="inactiveStatus"></div>
                                                     <div class="row">
                                                         <div class="col-xs-10">
-                                                            <div class="ticket-name">Check ticket
+                                                            <div class="ticket-name">Cek tiket
                                                     
                                                                 <span>
-                                                                    Enter your NRA to check the status of your ticket
+                                                                    Masukan NRA untuk cek tiket
                                                                     <br><br>    
                                                                     <form method="POST" action="{{ url('ticket-status') }}">
                                                                         @csrf
@@ -431,7 +253,7 @@
                                                                             <input type="text" class="form-control" name="nra"
                                                                                 placeholder="Enter your NRA" required>
                                                                                 <br>
-                                                                                <button type="submit" id="check" class="btn">Check</button>
+                                                                                <button type="submit" id="check" class="btn">Cek</button>
                                                                         </div>
                                                                     </form>
                                                                 </span>
@@ -446,13 +268,19 @@
                                                         <div class="ticket-description">                                                                
                                                         @if(session()->get('message-status-ticket') == 'error')
                                                             <div class="alert alert-danger">
-                                                                <ul><li> {{ 'Not found' }} </li></ul>
+                                                                <ul><li> {{ 'Tidak tersedia' }} </li></ul>
                                                             </div>
                                                         @else
                                                             <div class="alert alert-success">
                                                                 Ticket {{ session()->get('message-status-ticket')->name }}
                                                                 #{{ session()->get('message-status-ticket')->id }}
                                                                 <ul>
+                                                                    @if(session()->get('message-status-ticket')->ticket_status == 'pending')
+                                                                      <li style="color:red;">Status : {{ session()->get('message-status-ticket')->ticket_status }}, 
+                                                                        please complete the transaction </li>
+                                                                    @else
+                                                                       <li>Status : {{ session()->get('message-status-ticket')->ticket_status }} </li>
+                                                                    @endif
                                                                     <li>Nama : {{ session()->get('message-status-ticket')->customer_name }} </li>
                                                                     <li>NRA  : {{ session()->get('message-status-ticket')->customer_nra }} </li>
                                                                     <!-- <li> <br>
@@ -464,16 +292,27 @@
                                                                 </ul>
 
                                                             </div>
-
-                                                            <form method="post" action="{{ url('my-ticket-checking') }}">
-                                                                @csrf
-                                                                <div class="form">
-                                                                    <input type="hidden" class="form-control" name="ticket_id"
-                                                                        value="{{ session()->get('message-status-ticket')->id }}" required>
-
-                                                                    <button type="submit" class="btn">See my ticket </button>
+                                                           
+                                                            @if(session()->get('message-status-ticket')->ticket_status == 'pending')
+                                                                <div class="alert alert-success">
+                                                                    Narahubung :
+                                                                    <ul>
+                                                                        <li>Hp./Wa 1 : 088888888</li>
+                                                                        <li>Hp./Wa 2 : 088888888</li>
+                                                                    </ul>
                                                                 </div>
-                                                            </form>
+                                                            @else
+                                                                <form method="post" action="{{ url('my-ticket-checking') }}">
+                                                                    @csrf
+                                                                    <div class="form">
+                                                                        <input type="hidden" class="form-control" name="ticket_id"
+                                                                            value="{{ session()->get('message-status-ticket')->id }}" required>
+
+                                                                        <button type="submit" class="btn">Lihat tiket </button>
+                                                                    </div>
+                                                                </form>
+                                                            @endif
+
                                                         @endif
 
                                                         </div>
@@ -504,14 +343,14 @@
                             <div class="row">
                                 <div class="col-xs-6">
                                     <p>
-                                        <span class="ticket-count">0</span> Tickets <span class="divider"></span>
+                                        <span class="ticket-count">0</span> Tiket <span class="divider"></span>
                                         Total: Rp. <span class="total-amount">0</span>
                                     </p>
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="text-right">
                                         <a class="btn disabled" data-toggle="modal"
-                                            data-target="#ticket-details">PROCEED</a>
+                                            data-target="#ticket-details">PESAN</a>
                                     </div>
                                 </div>
                             </div>
@@ -555,22 +394,22 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <img src="images/icons/cancel.png">
                         </button>
-                        <h4 class="modal-title">Your Tickets</h4>
+                        <h4 class="modal-title">Tiket anda</h4>
                     </div>
                     <div class="modal-body">
 
                         <div class="cart-information">
                             <div class="ticket-type"></div>
                             <ul>
-                                <li>Tickets: <span class="ticket-count"></span></li>
-                                <li>Price: <span class="ticket-amount"></span></li>
+                                <li>Tiket: <span class="ticket-count"></span></li>
+                                <li>Harga: <span class="ticket-amount"></span></li>
                                 <hr>
                                 <li>Total: <span class="total-amount"></span></li>
                             </ul>
                         </div>
 
                         <div class="contactForm">
-                            <h3>Share your contact Details</h3>
+                            <h3>Detail data diri</h3>
 
                             <form method="POST" action="{{ url('ticket') }}">
                                 @csrf
@@ -578,34 +417,53 @@
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" name="ticket"
                                         id="ticket" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="name"
-                                        placeholder="Enter your name" required>
+                        
+                                    <select class="form-control" id="campus" name="campus" required>
+                                        <option value="" disabled selected >Kampus</option>
+                                        <option value="dipa">KD DIPA</option>
+                                        <option value="umi">KD UMI</option>
+                                    </select>
+
+                                    <input style="color:black;" type="text" class="form-control" name="name"
+                                        placeholder=" Nama" required>
+
+                                    <input style="color:black;" type="text" class="form-control" name="nra"
+                                        placeholder=" NRA" required>
+                       
+                                    <input style="color:black;" type="text" class="form-control" name="phone"
+                                        placeholder=" Hp/wa." required>
+                          
+                                    <input style="color:black;" type="email" class="form-control" name="email"
+                                        placeholder=" Email" required>
+                      
+                                    <input style="color:black;" type="text" class="form-control" name="address"
+                                        placeholder=" Alamat" required>
+                                        
+                                    <br>
+                                    <h3>Baju</h3>
+                                    <select class="form-control" id="tshirt" name="tshirt" required>
+                                        <option value="" disabled selected>Warna</option>
+                                        <option value="black">Hitam</option>
+                                        <option value="white">Putih</option>
+                                    </select>
+                                       
+                                    <select class="form-control" id="tshirt_type" name="tshirt_type" required>
+                                        <option value="" disabled selected>Lengan</option>
+                                        <option value="long">Panjang</option>
+                                        <option value="short">Pendek</option>
+                                    </select>
+
+                                    <select class="form-control" id="tshirt_size" name="tshirt_size" required>
+                                        <option value="" disabled selected>Ukuran</option>
+                                        <option value="s">S</option>
+                                        <option value="m">M</option>
+                                        <option value="l">L</option>
+                                        <option value="xl">XL</option>
+                                        <option value="xxl">XXL</option>
+                                    </select>
                                 </div>
 
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="nra"
-                                        placeholder="Enter your NRA" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="phone"
-                                        placeholder="Enter your Mobile No." required>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="email"
-                                        placeholder="Enter your Email" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="address"
-                                        placeholder="Enter your Address" required>
-                                </div>
-
-                                <button type="submit" class="btn">Proceed to Payment</button>
+                                <button type="submit" class="btn">Proses Pemesanan</button>
                             </form>
                             <br>
                         </div>
