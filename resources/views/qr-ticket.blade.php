@@ -200,20 +200,30 @@ html {
 			<span>ADMIT ONE</span>
 		</p>
 		<div class="right-info-container">
-			<br>
-			<div class="show-name">
 
+			<!-- <p style="color : gray; font-size:10px;">
+			*screenshot this qr code
+			</p> -->
+
+			<div class="show-name">
 			</div>
             <div class="time">
-				<p>16:00 PM <span>TO</span> 21:00 PM</p>
-				<p>DOORS <span>@</span> 15:30 PM</p>
+
+				@if(session()->has('message-my-ticket'))
+
+					<p>{{ session()->get('message-my-ticket')->customer_name }} <br>
+					{{ session()->get('message-my-ticket')->customer_nra }} <br>
+					<span>kd {{ session()->get('message-my-ticket')->customer_campus }}</span></p>
+				@else
+					<p class="ticket-number" style="color : red;">Fake ticket</p>
+				@endif
+
 			</div>
 			<div class="barcode">
-				<br>
 				
 				@if(session()->has('message-my-ticket'))
 					@php
-						echo DNS2D::getBarcodeHTML(session()->get('message-my-ticket')->customer_nra, 'QRCODE');
+						echo DNS2D::getBarcodeHTML(session()->get('message-my-ticket')->customer_nra.','.session()->get('message-my-ticket')->customer_campus , 'QRCODE');
 					@endphp
 
 				@else
@@ -221,6 +231,7 @@ html {
 				@endif
 
 			</div>
+			<br>
 			<p class="ticket-number">
 				{{-- Message --}}
 				@if(session()->has('message-my-ticket'))

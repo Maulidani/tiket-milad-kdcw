@@ -3,6 +3,14 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Ticket;
+use App\Models\TicketCategory;
+use App\Models\Status;
+
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\TicketStatusController;
+use App\Http\Controllers\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +25,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('get-tickets', 'App\Http\Controllers\TicketController@getTickets');
+Route::post('scan-ticket-show', 'TicketController@scanTicketShow');
+Route::post('scan-ticket-attendance', 'App\Http\Controllers\TicketController@scanTicketAttendance');

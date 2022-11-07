@@ -75,14 +75,14 @@
                                 <li role="presentation"><a href="#termCondition" aria-controls="termCondition"
                                         role="tab" data-toggle="tab">Alur pemesanan</a></li>
 
-                                <!-- @if(session()->has('message-status-ticket'))
+                                @if(session()->has('message-status-ticket'))
                                 <li role="presentation" class="active"><a href="#my-ticket" aria-controls="my-ticket"
                                         role="tab" data-toggle="tab">Tiket saya</a></li>
                         
                                 @else  
                                 <li role="presentation"><a href="#my-ticket" aria-controls="my-ticket"
                                         role="tab" data-toggle="tab">Tiket saya</a></li>
-                                @endif -->
+                                @endif
 
                             
                             </ul>
@@ -188,7 +188,7 @@
 
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="venue">
-                                    <!-- <h4> Cooming soon !</h4> -->
+                                    <h4> Cooming soon !</h4>
                                     <!-- <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam<h4>
                                             <br><img src="images/logo-milad-22.jpeg" style="max-width:100%;">
@@ -202,13 +202,15 @@
 
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="merchandise">
-                                    <h4>Merchandise<h4>
+                                    <h4> Cooming soon !</h4>
+                                  
+                                    <!-- <h4>Merchandise<h4>
                                             <br><img src="images/logo-milad-22.jpeg" style="max-width:100%;">
                                             <br><br>
                                             <img src="images/logo-milad-22.jpeg" style="max-width:100%;">
                                             <br><br>
                                             <img src="images/logo-milad-22.jpeg" style="max-width:100%;">
-                                            <br><br>
+                                            <br><br> -->
 
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="termCondition">
@@ -224,7 +226,10 @@
                                             <li>Masukkan data diri</li>
                                         </h4>
                                         <h4>
-                                            <li>Untuk informasi lebih lanjut, anda akan dihubungi melalui whatsapp</li>
+                                            <li>Proses pemesanan</li>
+                                        </h4>
+                                        <h4>
+                                            <li>Untuk informasi lebih lanjut, anda akan dihubungi melalui nomor whatsapp yang telah diinput</li>
                                         </h4>
                                     </ol>   
                                     <br><br>
@@ -245,15 +250,20 @@
                                                             <div class="ticket-name">Cek tiket
                                                     
                                                                 <span>
-                                                                    Masukan NRA untuk cek tiket
+                                                                    Masukkan NRA untuk cek tiket
                                                                     <br><br>    
                                                                     <form method="POST" action="{{ url('ticket-status') }}">
                                                                         @csrf
                                                                         <div class="form">
                                                                             <input type="text" class="form-control" name="nra"
-                                                                                placeholder="Enter your NRA" required>
-                                                                                <br>
-                                                                                <button type="submit" id="check" class="btn">Cek</button>
+                                                                                placeholder=" NRA" required>
+                                                                            <select class="form-control" id="campus" name="campus" required>
+                                                                                <option value="" disabled selected >Kampus</option>
+                                                                                <option value="dipa">KD DIPA</option>
+                                                                                <option value="umi">KD UMI</option>
+                                                                            </select>
+                                                                            <br>
+                                                                            <button type="submit" id="check" class="btn">Cek</button>
                                                                         </div>
                                                                     </form>
                                                                 </span>
@@ -277,12 +287,13 @@
                                                                 <ul>
                                                                     @if(session()->get('message-status-ticket')->ticket_status == 'pending')
                                                                       <li style="color:red;">Status : {{ session()->get('message-status-ticket')->ticket_status }}, 
-                                                                        please complete the transaction </li>
+                                                                        Belum menyelesaikan pembayaran </li>
                                                                     @else
                                                                        <li>Status : {{ session()->get('message-status-ticket')->ticket_status }} </li>
                                                                     @endif
                                                                     <li>Nama : {{ session()->get('message-status-ticket')->customer_name }} </li>
                                                                     <li>NRA  : {{ session()->get('message-status-ticket')->customer_nra }} </li>
+                                                                    <li>KD  : {{ session()->get('message-status-ticket')->customer_campus }} </li>
                                                                     <!-- <li> <br>
                                                                         @php
                                                                             echo DNS2D::getBarcodeHTML(session()->get('message-status-ticket')->customer_nra, 'QRCODE');
@@ -290,6 +301,17 @@
                                                                     </li> -->
                                                                     
                                                                 </ul>
+                                                                <br>
+                                                                @if(session()->get('message-status-ticket')->ticket_status == 'pending')
+
+                                                                    Selesaikan pembayaran untuk mendapatkan tiket
+                                                                    <h5>*hubungi kontak dibawah untuk informasi pembayaran</h5>
+
+                                                                @elseif(session()->get('message-status-ticket')->ticket_status == 'paid')
+
+                                                                    Tiket anda akan dikirim melalui whatsapp
+                                                                    <h5>*hubungi kontak dibawah jika tiket belum dikirim</h5>
+                                                                @endif
 
                                                             </div>
                                                            
@@ -302,7 +324,15 @@
                                                                     </ul>
                                                                 </div>
                                                             @else
-                                                                <form method="post" action="{{ url('my-ticket-checking') }}">
+                                                        
+                                                                <div class="alert alert-success">
+                                                                    Narahubung :
+                                                                    <ul>
+                                                                        <li>Hp./Wa 1 : 088888888</li>
+                                                                        <li>Hp./Wa 2 : 088888888</li>
+                                                                    </ul>
+                                                                </div>
+                                                                <!-- <form method="post" action="{{ url('my-ticket-checking') }}">
                                                                     @csrf
                                                                     <div class="form">
                                                                         <input type="hidden" class="form-control" name="ticket_id"
@@ -310,7 +340,7 @@
 
                                                                         <button type="submit" class="btn">Lihat tiket </button>
                                                                     </div>
-                                                                </form>
+                                                                </form> -->
                                                             @endif
 
                                                         @endif
@@ -439,28 +469,31 @@
                                     <input style="color:black;" type="text" class="form-control" name="address"
                                         placeholder=" Alamat" required>
                                         
-                                    <br>
-                                    <h3>Baju</h3>
-                                    <select class="form-control" id="tshirt" name="tshirt" required>
-                                        <option value="" disabled selected>Warna</option>
-                                        <option value="black">Hitam</option>
-                                        <option value="white">Putih</option>
-                                    </select>
-                                       
-                                    <select class="form-control" id="tshirt_type" name="tshirt_type" required>
-                                        <option value="" disabled selected>Lengan</option>
-                                        <option value="long">Panjang</option>
-                                        <option value="short">Pendek</option>
-                                    </select>
+                                    <!-- @ if(  != 'silver') -->
+                                        <br>
+                                        <h3>Baju</h3> *Hanya untuk tiket jenis platinum dan gold
+                                        <select class="form-control" id="tshirt" name="tshirt">
+                                            <option value="" disabled selected>Warna</option>
+                                            <option value="black">Hitam</option>
+                                            <option value="white">Putih</option>
+                                        </select>
+                                        
+                                        <select class="form-control" id="tshirt_type" name="tshirt_type">
+                                            <option value="" disabled selected>Lengan</option>
+                                            <option value="long">Panjang</option>
+                                            <option value="short">Pendek</option>
+                                        </select>
 
-                                    <select class="form-control" id="tshirt_size" name="tshirt_size" required>
-                                        <option value="" disabled selected>Ukuran</option>
-                                        <option value="s">S</option>
-                                        <option value="m">M</option>
-                                        <option value="l">L</option>
-                                        <option value="xl">XL</option>
-                                        <option value="xxl">XXL</option>
-                                    </select>
+                                        <select class="form-control" id="tshirt_size" name="tshirt_size">
+                                            <option value="" disabled selected>Ukuran</option>
+                                            <option value="s">S</option>
+                                            <option value="m">M</option>
+                                            <option value="l">L</option>
+                                            <option value="xl">XL</option>
+                                            <option value="xxl">XXL</option>
+                                        </select>
+                                    <!-- @ endif -->
+                                   
                                 </div>
 
                                 <button type="submit" class="btn">Proses Pemesanan</button>

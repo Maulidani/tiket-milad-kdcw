@@ -38,7 +38,11 @@ Route::post('ticket-status', function (Request $request) {
 
     $status = Ticket::join('statuses','statuses.id','tickets.status_id')
         ->join('ticket_categories','ticket_categories.id','tickets.ticket_category_id')
-        ->where('tickets.customer_nra', $request->nra)->first(['tickets.*', 'ticket_categories.name','statuses.name as ticket_status', 'statuses.description as ticket_status_desc']);
+        ->where([
+            ['tickets.customer_nra', $request->nra],
+            ['tickets.customer_campus', $request->campus],
+        ])
+        ->first(['tickets.*', 'ticket_categories.name','statuses.name as ticket_status', 'statuses.description as ticket_status_desc']);
 
     if($status) {
         return back()->with('message-status-ticket', $status);
@@ -51,12 +55,13 @@ Route::post('ticket-status', function (Request $request) {
 
 Route::resource('admin', AdminController::class);
 
-Route::get('my-ticket', function() {
+Route::get('e-ticket', function() {
     
     // $pdf = Pdf::loadview('qr-ticket')->setOptions(['']);
-    // return $pdf->stream('');
-    
+    // return $pdf->stream('');    
+    // return view('qr-ticket');
     return view('eticket');
+
 });
 
 Route::post('my-ticket-checking', function (Request $request) {
@@ -66,9 +71,26 @@ Route::post('my-ticket-checking', function (Request $request) {
     ->where('tickets.id', $request->ticket_id)->first(['tickets.*', 'ticket_categories.name']);
 
     if($status) {
-        return redirect('/my-ticket')->with('message-my-ticket', $status);
+        return redirect('/e-ticket')->with('message-my-ticket', $status);
     } else {
         return back()->with('message-status-ticket', 'error');
     }
 
+});
+
+Route::get('my-ticket/{ticket_id}', function($ticket_id) {
+
+    // $encrypt = \Crypt::encrypt($);
+    $decrypt = \Crypt::decrypt($ticket_id);
+
+    $status = Ticket::join('statuses','statuses.id','tickets.status_id')
+    ->join('ticket_categories','ticket_categories.id','tickets.ticket_category_id')
+    ->where('tickets.id', $decrypt )->first(['tickets.*', 'ticket_categories.name']);
+
+    if($status) {
+        return redirect('/e-ticket')->with('message-my-ticket', $status);
+    } else {
+        return  redirect('/error');
+    }
+    
 });
