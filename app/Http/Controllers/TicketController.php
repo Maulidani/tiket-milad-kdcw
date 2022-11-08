@@ -218,7 +218,7 @@ class TicketController extends Controller
             if($exist->name == 'paid') {
 
                 $attend = Ticket::find($exist->id);
-                $attend->status_id = $status_id->status_id;
+                $attend->status_id = $request->status_id;
                 $attend->save();
     
                 if($attend){
