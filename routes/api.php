@@ -28,7 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('get-tickets', 'App\Http\Controllers\TicketController@getTickets');
-Route::post('scan-ticket-show', 'App\Http\ControllersTicketController@scanTicketShow');
+Route::post('scan-ticket-show', 'App\Http\Controllers\TicketController@scanTicketShow');
 Route::post('scan-ticket-attendance', 'App\Http\Controllers\TicketController@scanTicketAttendance');
 Route::post('edit-ticket', 'App\Http\Controllers\TicketController@editTicket');
 Route::post('get-data', 'App\Http\Controllers\TicketController@getData');

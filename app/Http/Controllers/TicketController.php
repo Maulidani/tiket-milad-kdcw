@@ -261,6 +261,8 @@ class TicketController extends Controller
      
     public function scanTicketShow(Request $request)
     {
+        $nraCampus = explode(',', $request->nra_campus);
+
         $data = Ticket::join('statuses','statuses.id','tickets.status_id')
         ->where([
             ['tickets.customer_nra', $nraCampus[0]],
