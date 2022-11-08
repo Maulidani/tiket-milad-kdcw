@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Tiket - MILAD KDCW 22</title>
+        <title>Tiket - MILAD 22 KDCW</title>
 
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -202,7 +202,7 @@
 
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="merchandise">
-                                    <h4> Cooming soon !</h4>
+                                    <!-- <h4> Cooming soon !</h4> -->
                                   
                                     <!-- <h4>Merchandise<h4>
                                             <br><img src="images/logo-milad-22.jpeg" style="max-width:100%;">
@@ -211,6 +211,8 @@
                                             <br><br>
                                             <img src="images/logo-milad-22.jpeg" style="max-width:100%;">
                                             <br><br> -->
+
+                                    <img src="images/merchandise.jpeg" style="max-width:100%;">
 
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="termCondition">
@@ -226,7 +228,7 @@
                                             <li>Masukkan data diri</li>
                                         </h4>
                                         <h4>
-                                            <li>Proses pemesanan</li>
+                                            <li>Proses pesanan</li>
                                         </h4>
                                         <h4>
                                             <li>Untuk informasi lebih lanjut, anda akan dihubungi melalui nomor whatsapp yang telah diinput</li>
@@ -496,7 +498,7 @@
                                    
                                 </div>
 
-                                <button type="submit" class="btn">Proses Pemesanan</button>
+                                <button type="submit" class="btn">Proses Pesanan</button>
                             </form>
                             <br>
                         </div>

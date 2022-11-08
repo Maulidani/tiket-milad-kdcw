@@ -294,7 +294,6 @@ html {
 				@endif
 
 			</div>
-			<br>
 			<p class="ticket-number">
 				{{-- Message --}}
 				@if(session()->has('message-my-ticket'))

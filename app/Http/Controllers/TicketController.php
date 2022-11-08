@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Status;
 use App\Models\Ticket;
 use App\Models\TicketCategory;
 
@@ -78,12 +79,18 @@ class TicketController extends Controller
             $model->customer_email = $request->email;
             $model->customer_address = $request->address;
             $model->customer_campus = $request->campus;
-            $model->merchandise = $request->tshirt.','.$request->tshirt_type.','.$request->tshirt_size;
+
+            if($request->ticket != 1) {
+                $model->merchandise = $request->tshirt.','.$request->tshirt_type.','.$request->tshirt_size;           
+            }else {
+                $model->merchandise = ',,';
+            }
+
             $model->status_id = "1";
             $model->save();
 
             if($model) {
-                return redirect()->back()->with('message-order-ticket', 'Berhasil pesan tiket');
+                return redirect()->back()->with('message-order-ticket', 'Berhasil pesan tiket, untuk lanjutkan pembayaran bisa melalui narahubung yang tertera');
             
             } else {
                 return redirect()->back()->with('message-order-ticket', 'terjadi kesalahan');
@@ -142,15 +149,7 @@ class TicketController extends Controller
     //api
     public function getTickets(Request $request)
     {
-         // $encrypt = \Crypt::encrypt($ticket_id);
-        // $decrypt = \Crypt::decrypt($ticket_id);
-
-        // return response()->json([
-        //     // 'message' => $encrypt,
-        //     'decrypt' => $decrypt,
-        //     'ori' => $ticket_id,
-        // ]);
-
+        
         $data = Ticket::join('ticket_categories','ticket_categories.id','tickets.ticket_category_id')
         ->join('statuses','statuses.id','tickets.status_id')
         ->where('tickets.customer_name', 'like', "%" . $request->search . "%")
@@ -164,7 +163,12 @@ class TicketController extends Controller
 
             foreach($data as $i) 
             {
-                $encrypt = \Crypt::encrypt($i->id);
+
+                if($i->status == "pending") {
+                    $encrypt = "";
+                } else {
+                    $encrypt = \Crypt::encrypt($i->id);
+                }
 
                 $ticket[] = array(
                     'url'=> 'my-ticket/'.$encrypt,
@@ -203,18 +207,49 @@ class TicketController extends Controller
     {
         $nraCampus = explode(',', $request->nra_campus);
 
-        $data = Ticket::where([
-            ['customer_nra', $nraCampus[0]],
-            ['customer_campus', $nraCampus[1]],
-        ])->first();
+        $exist = Ticket::join('statuses','statuses.id','tickets.status_id')
+        ->where([
+            ['tickets.customer_nra', $nraCampus[0]],
+            ['tickets.customer_campus', $nraCampus[1]],
+        ])->first(['tickets.id','statuses.name']);
 
-        if($data){
-            return response()->json([
-                'message' => 'Success',
-                'errors' => false,
-                'ticket' => $data
-            ]);
+        if($exist){
 
+            if($exist->name == 'paid') {
+
+                $attend = Ticket::find($exist->id);
+                $attend->status_id = 3; // 3 == attend
+                $attend->save();
+    
+                if($attend){
+                    return response()->json([
+                        'message' => 'Success',
+                        'errors' => false,
+                        'ticket' => $attend
+                    ]);    
+
+                } else {
+                    return response()->json([
+                        'message' => 'Failed',
+                        'errors' => true,
+                    ]);
+
+                }
+    
+            } else if($exist->name == 'attend') {
+                return response()->json([
+                    'message' => 'Attend',
+                    'errors' => true,
+                ]);
+
+            } else {
+                return response()->json([
+                    'message' => 'Failed',
+                    'errors' => true,
+                ]);
+
+            }
+            
         } else {
             return response()->json([
                 'message' => 'Failed',
@@ -226,7 +261,92 @@ class TicketController extends Controller
      
     public function scanTicketShow(Request $request)
     {
-        //
+        $data = Ticket::join('statuses','statuses.id','tickets.status_id')
+        ->where([
+            ['tickets.customer_nra', $nraCampus[0]],
+            ['tickets.customer_campus', $nraCampus[1]],
+        ])->first(['tickets.*','statuses.name']);
+
+        if($data){
+            return response()->json([
+                'message' => 'Success',
+                'errors' => false,
+                'data' => $data
+            ]);
+
+        } else {
+            return response()->json([
+                'message' => 'Failed',
+                'errors' => true,
+            ]);
+
+        }
+    }
+
+    public function editTicket(Request $request)
+    {
+        // 1 == pending, 2 == paid, 3 == attend
+
+        $edit = Ticket::find($request->ticket_id);
+        $edit->status_id = $request->status_id; 
+        $edit->save();
+
+        if($edit){
+            return response()->json([
+                'message' => 'Success',
+                'errors' => false,
+                'ticket' => $edit
+            ]);    
+
+        } else {
+            return response()->json([
+                'message' => 'Failed',
+                'errors' => true,
+            ]);
+
+        }
+    }
+
+    public function getData(Request $request)
+    {
+        $status = Status::get();
+        $ticket_category = TicketCategory::get();
+     
+        if($status && $ticket_category){
+            return response()->json([
+                'message' => 'Success',
+                'errors' => false,
+                'status' => $status,
+                'ticket_category' => $ticket_category
+            ]);    
+
+        } else {
+            return response()->json([
+                'message' => 'Failed',
+                'errors' => true,
+            ]);
+
+        }
+    }
+
+    public function login(Request $request)
+    {
+        $username = 'milad';
+        $password = 'milad22kdcw';
+     
+        if($request->username == $username && $request->password == $password){
+            return response()->json([
+                'message' => 'Success',
+                'errors' => false,
+            ]);    
+
+        } else {
+            return response()->json([
+                'message' => 'Failed',
+                'errors' => true,
+            ]);
+
+        }
     }
 
 }

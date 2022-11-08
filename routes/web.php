@@ -85,7 +85,10 @@ Route::get('my-ticket/{ticket_id}', function($ticket_id) {
 
     $status = Ticket::join('statuses','statuses.id','tickets.status_id')
     ->join('ticket_categories','ticket_categories.id','tickets.ticket_category_id')
-    ->where('tickets.id', $decrypt )->first(['tickets.*', 'ticket_categories.name']);
+    ->where([
+        ['tickets.id', $decrypt],
+        ['statuses.name', '!=', 'pending'],
+        ] )->first(['tickets.*', 'ticket_categories.name']);
 
     if($status) {
         return redirect('/e-ticket')->with('message-my-ticket', $status);
