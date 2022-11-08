@@ -53,7 +53,7 @@ class TicketController extends Controller
             'campus' => 'required',
         ]);
 
-        if($request->ticket == '2' || $request->ticket == '3') {
+        if($request->ticket == '2' || $request->ticket == '3') { // 2 == gold , 3 == platinum
             $request->validate([
                 'tshirt' => 'required',
                 'tshirt_type' => 'required',
@@ -80,7 +80,7 @@ class TicketController extends Controller
             $model->customer_address = $request->address;
             $model->customer_campus = $request->campus;
 
-            if($request->ticket != 1) {
+            if($request->ticket != 1) { // 1 == silver
                 $model->merchandise = $request->tshirt.','.$request->tshirt_type.','.$request->tshirt_size;           
             }else {
                 $model->merchandise = ',,';
@@ -218,7 +218,7 @@ class TicketController extends Controller
             if($exist->name == 'paid') {
 
                 $attend = Ticket::find($exist->id);
-                $attend->status_id = 3; // 3 == attend
+                $attend->status_id = $status_id->status_id;
                 $attend->save();
     
                 if($attend){
@@ -285,7 +285,6 @@ class TicketController extends Controller
 
     public function editTicket(Request $request)
     {
-        // 1 == pending, 2 == paid, 3 == attend
 
         $edit = Ticket::find($request->ticket_id);
         $edit->status_id = $request->status_id; 
