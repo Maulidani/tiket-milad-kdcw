@@ -154,7 +154,7 @@ class TicketController extends Controller
         ->join('statuses','statuses.id','tickets.status_id')
         ->where('tickets.customer_name', 'like', "%" . $request->search . "%")
         ->orWhere('tickets.customer_nra', 'like', "%" . $request->search . "%")
-        ->orderBy('tickets.updated_at', 'DESC')
+        ->orderBy('tickets.created_at', 'DESC')
         ->get(
             ['tickets.*','ticket_categories.name as ticket','statuses.name as status']
         );
