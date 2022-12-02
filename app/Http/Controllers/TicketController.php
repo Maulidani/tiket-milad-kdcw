@@ -158,12 +158,14 @@ class TicketController extends Controller
         ->get(
             ['tickets.*','ticket_categories.name as ticket','statuses.name as status']
         );
+
+        $dataPaid = Ticket::join('statuses','statuses.id','tickets.status_id')
+        ->where('statuses.name','!=','pending')->get();
  	 	 	 	 	 	 	 	 	 	 	
         if($data){
 
             foreach($data as $i) 
             {
-
                 if($i->status == "pending") {
                     $encrypt = "";
                 } else {
@@ -191,7 +193,9 @@ class TicketController extends Controller
             return response()->json([
                 'message' => 'Success',
                 'errors' => false,
-                'data' => $ticket
+                'data' => $ticket,
+                'total' => $data->count(),
+                'total_paid' => $dataPaid->count()
             ]);
 
         } else {
