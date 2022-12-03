@@ -148,16 +148,38 @@ class TicketController extends Controller
 
     //api
     public function getTickets(Request $request)
-    {
-        
-        $data = Ticket::join('ticket_categories','ticket_categories.id','tickets.ticket_category_id')
-        ->join('statuses','statuses.id','tickets.status_id')
-        ->where('tickets.customer_name', 'like', "%" . $request->search . "%")
-        ->orWhere('tickets.customer_nra', 'like', "%" . $request->search . "%")
-        ->orderBy('tickets.created_at', 'DESC')
-        ->get(
-            ['tickets.*','ticket_categories.name as ticket','statuses.name as status']
-        );
+    {    
+
+        if($request->status != null){
+
+            if($request->status == "all"){
+                $data = Ticket::join('ticket_categories','ticket_categories.id','tickets.ticket_category_id')
+                ->join('statuses','statuses.id','tickets.status_id')
+                ->orderBy('tickets.created_at', 'DESC')
+                ->get(
+                    ['tickets.*','ticket_categories.name as ticket','statuses.name as status']
+                );
+            } else {
+                $data = Ticket::join('ticket_categories','ticket_categories.id','tickets.ticket_category_id')
+                ->join('statuses','statuses.id','tickets.status_id')
+                ->where('statuses.name',$request->status)
+                ->orderBy('tickets.created_at', 'DESC')
+                ->get(
+                    ['tickets.*','ticket_categories.name as ticket','statuses.name as status']
+                );
+            }
+            
+        } else {
+            $data = Ticket::join('ticket_categories','ticket_categories.id','tickets.ticket_category_id')
+            ->join('statuses','statuses.id','tickets.status_id')
+            ->where('tickets.customer_name', 'like', "%" . $request->search . "%")
+            ->orWhere('tickets.customer_nra', 'like', "%" . $request->search . "%")
+            ->orderBy('tickets.created_at', 'DESC')
+            ->get(
+                ['tickets.*','ticket_categories.name as ticket','statuses.name as status']
+            );
+    
+        }
 
         $dataPaid = Ticket::join('statuses','statuses.id','tickets.status_id')
         ->where('statuses.name','!=','pending')->get();
@@ -334,12 +356,31 @@ class TicketController extends Controller
         }
     }
 
+    public function deleteTicket(Request $request)
+    {
+        $delete = Ticket::find($request->ticket_id);
+        $delete->delete();
+
+        if($delete){
+            return response()->json([
+                'message' => 'Success',
+                'errors' => false,
+            ]);    
+
+        } else {
+            return response()->json([
+                'message' => 'Failed',
+                'errors' => true,
+            ]);
+
+        }
+    }
+
     public function login(Request $request)
     {
-        $username = 'milad';
         $password = 'milad22kdcw';
      
-        if($request->username == $username && $request->password == $password){
+        if($request->password == $password){
             return response()->json([
                 'message' => 'Success',
                 'errors' => false,
